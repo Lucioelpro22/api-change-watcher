@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Detecta cambios en documentación de APIs antes de que rompan tu producto." />
+  <title>API Change Watcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="Inicio"><span class="brand-mark"><i></i><i></i><i></i></span><span>API Change<br><b>Watcher</b></span></a>
+    <nav>
+      <a class="active" href="#overview"><span>⌁</span> Overview</a>
+      <a href="#monitors"><span>◉</span> Monitores <em>6</em></a>
+      <a href="#changes"><span>↯</span> Cambios <em class="hot">3</em></a>
+      <a href="#alerts"><span>⌁</span> Alertas</a>
+    </nav>
+    <div class="sidebar-label">Workspace</div>
+    <nav><a href="#team"><span>♙</span> Equipo</a><a href="#settings"><span>⚙</span> Configuración</a></nav>
+    <div class="side-foot"><div class="status-dot"></div><div><b>Todos los sistemas</b><small>Operativos</small></div></div>
+  </aside>
+
+  <main>
+    <header>
+      <button class="mobile-menu" aria-label="Abrir menú">☰</button>
+      <div class="eyebrow"><span></span> LIVE MONITORING</div>
+      <div class="header-actions"><button class="icon-btn" aria-label="Notificaciones">♢<i>3</i></button><div class="avatar">AL</div><div class="profile"><b>Agos Leal</b><small>Owner</small></div></div>
+    </header>
+
+    <section id="overview" class="hero">
+      <div><p class="kicker">OVERVIEW / 31 OCT 2026</p><h1>Tu radar para<br><span>cambios de API.</span></h1><p class="lede">Detectamos modificaciones en endpoints, campos y precios antes de que impacten en producción.</p></div>
+      <button class="primary" id="newMonitor"><span>＋</span> Nuevo monitor</button>
+    </section>
+
+    <section class="metrics" aria-label="Resumen">
+      <article><div class="metric-icon mint">◉</div><div><small>APIs MONITOREADAS</small><strong>6</strong><p><span class="up">↑ 2</span> este mes</p></div></article>
+      <article><div class="metric-icon yellow">↯</div><div><small>CAMBIOS · 7 DÍAS</small><strong>12</strong><p><span class="warn">3 críticos</span> requieren acción</p></div></article>
+      <article><div class="metric-icon blue">✓</div><div><small>UPTIME DE ESCANEO</small><strong>99.98%</strong><p><span class="up">●</span> Último scan hace 4m</p></div></article>
+      <article><div class="metric-icon purple">⌁</div><div><small>TIEMPO AHORRADO</small><strong>8.4h</strong><p>Estimado este mes</p></div></article>
+    </section>
+
+    <section id="monitors" class="content-grid">
+      <div class="panel activity-panel">
+        <div class="panel-head"><div><p class="kicker">ACTIVIDAD RECIENTE</p><h2>Cambios detectados</h2></div><button class="text-btn" id="viewAll">Ver historial →</button></div>
+        <div class="filters"><button class="filter active" data-filter="all">Todos <b>12</b></button><button class="filter" data-filter="critical">Críticos <b>3</b></button><button class="filter" data-filter="warning">Warnings <b>5</b></button><button class="filter" data-filter="info">Info <b>4</b></button></div>
+        <div class="change-list" id="changeList">
+          <button class="change-row" data-level="critical" data-title="Stripe · /v1/payment_intents" data-detail="El campo amount_capturable cambió de opcional a requerido.">
+            <span class="api-logo stripe">S</span><span class="change-main"><b>Stripe API</b><code>POST /v1/payment_intents</code><small><i class="critical-dot"></i> Campo requerido agregado</small></span><span class="tag critical">CRÍTICO</span><span class="time">HACE 18 MIN</span><span class="arrow">›</span>
+          </button>
+          <button class="change-row" data-level="warning" data-title="OpenAI · GPT-4o pricing" data-detail="El precio de tokens de salida se actualizó de $15 a $10 por millón.">
+            <span class="api-logo openai">◎</span><span class="change-main"><b>OpenAI API</b><code>Pricing / GPT-4o</code><small><i class="warning-dot"></i> Precio actualizado</small></span><span class="tag warning">WARNING</span><span class="time">HACE 2 H</span><span class="arrow">›</span>
+          </button>
+          <button class="change-row" data-level="info" data-title="GitHub · Repository webhooks" data-detail="Se agregó el evento branch_protection_rule al catálogo de webhooks.">
+            <span class="api-logo github">◈</span><span class="change-main"><b>GitHub API</b><code>Webhook events</code><small><i class="info-dot"></i> Nuevo evento disponible</small></span><span class="tag info">INFO</span><span class="time">AYER, 22:41</span><span class="arrow">›</span>
+          </button>
+          <button class="change-row" data-level="warning" data-title="Twilio · Messages" data-detail="El endpoint /Messages.json anuncia deprecación para el parámetro legacy_status.">
+            <span class="api-logo twilio">●</span><span class="change-main"><b>Twilio API</b><code>/2010-04-01/Messages</code><small><i class="warning-dot"></i> Deprecación anunciada</small></span><span class="tag warning">WARNING</span><span class="time">AYER, 16:03</span><span class="arrow">›</span>
+          </button>
+        </div>
+      </div>
+
+      <aside class="right-column">
+        <div class="panel health">
+          <div class="panel-head"><div><p class="kicker">SALUD DE MONITORES</p><h2>Estado actual</h2></div><span class="live-pill"><i></i> LIVE</span></div>
+          <div class="donut-wrap"><div class="donut"><div><strong>6</strong><small>ACTIVOS</small></div></div><div class="legend"><p><i class="ok"></i><span>Operativos</span><b>5</b></p><p><i class="delay"></i><span>Con demora</span><b>1</b></p><p><i class="off"></i><span>Pausados</span><b>0</b></p></div></div>
+          <div class="scan"><span><i></i> Próximo escaneo</span><strong id="countdown">04:32</strong></div>
+        </div>
+        <div class="panel coverage">
+          <div class="panel-head"><div><p class="kicker">COBERTURA</p><h2>Qué vigilamos</h2></div></div>
+          <div class="coverage-row"><span>Endpoints</span><b>48</b><div><i style="width:86%"></i></div></div>
+          <div class="coverage-row"><span>Schemas & campos</span><b>312</b><div><i style="width:72%"></i></div></div>
+          <div class="coverage-row"><span>Planes & precios</span><b>9</b><div><i style="width:58%"></i></div></div>
+          <div class="channels"><small>ALERTAS CONECTADAS</small><span title="Slack">#</span><span title="Email">✉</span><span title="Webhook">⌘</span><button>＋</button></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="insight-strip"><div><span class="pulse">✦</span><p class="kicker">INSIGHT DEL DÍA</p><h3>3 cambios podrían romper tu integración</h3><p>Los detectamos, clasificamos y te mostramos exactamente qué revisar.</p></div><button class="secondary" id="reviewCritical">Revisar críticos <span>→</span></button></section>
+    <footer><span>API CHANGE WATCHER</span><p>Datos de demostración · Diseñado para detectar lo que importa.</p><span>v1.0</span></footer>
+  </main>
+
+  <dialog id="monitorDialog">
+    <form method="dialog" id="monitorForm">
+      <button class="close" value="cancel" aria-label="Cerrar">×</button><p class="kicker">NUEVO MONITOR</p><h2>Vigilá una API</h2><p>Ingresá la documentación que querés rastrear.</p>
+      <label>Nombre de la API<input id="apiName" placeholder="Ej. Stripe API" required></label>
+      <label>URL de documentación<input id="apiUrl" type="url" placeholder="https://docs.example.com/api" required></label>
+      <div class="form-grid"><label>Frecuencia<select><option>Cada 15 minutos</option><option>Cada hora</option><option>Cada día</option></select></label><label>Sensibilidad<select><option>Todos los cambios</option><option>Solo importantes</option></select></label></div>
+      <button class="primary submit" value="default">Crear monitor</button><small class="demo-note">Demo: el monitor se agregará a esta vista local.</small>
+    </form>
+  </dialog>
+  <dialog id="detailDialog"><div class="detail"><button class="close" aria-label="Cerrar">×</button><p class="kicker">DETALLE DEL CAMBIO</p><h2 id="detailTitle"></h2><p id="detailText"></p><div class="diff"><code><span>- "required": false</span><b>+ "required": true</b></code></div><div class="detail-actions"><button class="secondary close-action">Cerrar</button><button class="primary">Marcar como revisado</button></div></div></dialog>
+  <div class="toast" id="toast"><span>✓</span><div><b>Monitor creado</b><small>El primer escaneo ya está en curso.</small></div></div>
+  <script src="app.js"></script>
+</body>
+</html>

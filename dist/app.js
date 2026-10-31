@@ -1,0 +1,13 @@
+const qs=(s,c=document)=>c.querySelector(s), qsa=(s,c=document)=>[...c.querySelectorAll(s)];
+const monitorDialog=qs('#monitorDialog'), detailDialog=qs('#detailDialog'), toast=qs('#toast');
+qs('#newMonitor').addEventListener('click',()=>monitorDialog.showModal());
+qs('.mobile-menu').addEventListener('click',()=>qs('.sidebar').classList.toggle('open'));
+qsa('.sidebar a').forEach(a=>a.addEventListener('click',()=>qs('.sidebar').classList.remove('open')));
+qsa('.filter').forEach(btn=>btn.addEventListener('click',()=>{qsa('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');qsa('.change-row').forEach(row=>row.classList.toggle('hidden',btn.dataset.filter!=='all'&&row.dataset.level!==btn.dataset.filter));}));
+qsa('.change-row').forEach(row=>row.addEventListener('click',()=>{qs('#detailTitle').textContent=row.dataset.title;qs('#detailText').textContent=row.dataset.detail;detailDialog.showModal();}));
+qsa('#detailDialog .close, #detailDialog .close-action').forEach(b=>b.addEventListener('click',()=>detailDialog.close()));
+qs('#reviewCritical').addEventListener('click',()=>{qs('[data-filter="critical"]').click();qs('#monitors').scrollIntoView({behavior:'smooth'});});
+qs('#viewAll').addEventListener('click',()=>{qsa('.filter')[0].click();});
+qs('#monitorForm').addEventListener('submit',e=>{e.preventDefault();const name=qs('#apiName').value.trim();if(!name)return;monitorDialog.close();toast.querySelector('b').textContent=`${name} agregado`;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),3500);e.target.reset();});
+monitorDialog.addEventListener('click',e=>{if(e.target===monitorDialog)monitorDialog.close()});detailDialog.addEventListener('click',e=>{if(e.target===detailDialog)detailDialog.close()});
+let seconds=272;setInterval(()=>{seconds=seconds?seconds-1:900;const m=String(Math.floor(seconds/60)).padStart(2,'0'),s=String(seconds%60).padStart(2,'0');qs('#countdown').textContent=`${m}:${s}`},1000);
