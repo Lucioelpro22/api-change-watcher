@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="enhancements.css" />
 </head>
 <body>
   <div class="noise"></div>
@@ -16,7 +17,7 @@
     <a class="brand" href="#" aria-label="Inicio"><span class="brand-mark"><i></i><i></i><i></i></span><span>API Change<br><b>Watcher</b></span></a>
     <nav>
       <a class="active" href="#overview"><span>⌁</span> Overview</a>
-      <a href="#monitors"><span>◉</span> Monitores <em>6</em></a>
+      <a href="#monitors"><span>◉</span> Monitores <em id="navMonitorCount">6</em></a>
       <a href="#changes"><span>↯</span> Cambios <em class="hot">3</em></a>
       <a href="#alerts"><span>⌁</span> Alertas</a>
     </nav>
@@ -38,7 +39,7 @@
     </section>
 
     <section class="metrics" aria-label="Resumen">
-      <article><div class="metric-icon mint">◉</div><div><small>APIs MONITOREADAS</small><strong>6</strong><p><span class="up">↑ 2</span> este mes</p></div></article>
+      <article><div class="metric-icon mint">◉</div><div><small>APIs MONITOREADAS</small><strong id="monitorCount">6</strong><p><span class="up" id="monitorGrowth">↑ 2</span> este mes</p></div></article>
       <article><div class="metric-icon yellow">↯</div><div><small>CAMBIOS · 7 DÍAS</small><strong>12</strong><p><span class="warn">3 críticos</span> requieren acción</p></div></article>
       <article><div class="metric-icon blue">✓</div><div><small>UPTIME DE ESCANEO</small><strong>99.98%</strong><p><span class="up">●</span> Último scan hace 4m</p></div></article>
       <article><div class="metric-icon purple">⌁</div><div><small>TIEMPO AHORRADO</small><strong>8.4h</strong><p>Estimado este mes</p></div></article>
@@ -47,7 +48,7 @@
     <section id="monitors" class="content-grid">
       <div class="panel activity-panel">
         <div class="panel-head"><div><p class="kicker">ACTIVIDAD RECIENTE</p><h2>Cambios detectados</h2></div><button class="text-btn" id="viewAll">Ver historial →</button></div>
-        <div class="filters"><button class="filter active" data-filter="all">Todos <b>12</b></button><button class="filter" data-filter="critical">Críticos <b>3</b></button><button class="filter" data-filter="warning">Warnings <b>5</b></button><button class="filter" data-filter="info">Info <b>4</b></button></div>
+        <div class="activity-tools"><div class="filters"><button class="filter active" data-filter="all">Todos <b>12</b></button><button class="filter" data-filter="critical">Críticos <b>3</b></button><button class="filter" data-filter="warning">Warnings <b>5</b></button><button class="filter" data-filter="info">Info <b>4</b></button></div><label class="search"><span>⌕</span><input id="changeSearch" type="search" placeholder="Buscar cambio…" aria-label="Buscar cambios"></label></div>
         <div class="change-list" id="changeList">
           <button class="change-row" data-level="critical" data-title="Stripe · /v1/payment_intents" data-detail="El campo amount_capturable cambió de opcional a requerido.">
             <span class="api-logo stripe">S</span><span class="change-main"><b>Stripe API</b><code>POST /v1/payment_intents</code><small><i class="critical-dot"></i> Campo requerido agregado</small></span><span class="tag critical">CRÍTICO</span><span class="time">HACE 18 MIN</span><span class="arrow">›</span>
@@ -93,7 +94,7 @@
       <button class="primary submit" value="default">Crear monitor</button><small class="demo-note">Demo: el monitor se agregará a esta vista local.</small>
     </form>
   </dialog>
-  <dialog id="detailDialog"><div class="detail"><button class="close" aria-label="Cerrar">×</button><p class="kicker">DETALLE DEL CAMBIO</p><h2 id="detailTitle"></h2><p id="detailText"></p><div class="diff"><code><span>- "required": false</span><b>+ "required": true</b></code></div><div class="detail-actions"><button class="secondary close-action">Cerrar</button><button class="primary">Marcar como revisado</button></div></div></dialog>
+  <dialog id="detailDialog"><div class="detail"><button class="close" aria-label="Cerrar">×</button><p class="kicker">DETALLE DEL CAMBIO</p><h2 id="detailTitle"></h2><p id="detailText"></p><div class="diff"><code><span>- "required": false</span><b>+ "required": true</b></code></div><div class="detail-actions"><button class="secondary close-action">Cerrar</button><button class="primary" id="markReviewed">Marcar como revisado</button></div></div></dialog>
   <div class="toast" id="toast"><span>✓</span><div><b>Monitor creado</b><small>El primer escaneo ya está en curso.</small></div></div>
   <script src="app.js"></script>
 </body>

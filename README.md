@@ -13,6 +13,8 @@ Dashboard profesional para monitorear documentación de APIs y detectar cambios 
 - Detalle de cambios con una vista de diff.
 - Filtros rápidos por severidad.
 - Flujo interactivo para agregar nuevos monitores.
+- Persistencia local de monitores y cambios revisados.
+- Búsqueda instantánea y filtros combinables por severidad.
 - Cobertura de endpoints, schemas, campos, planes y precios.
 - Diseño responsive para escritorio y dispositivos móviles.
 
@@ -42,3 +44,8 @@ dist/
 ## Stack
 
 HTML5, CSS3 y JavaScript nativo.
+
+## Historial
+
+- **v1.1:** persistencia local, búsqueda de cambios, métricas dinámicas y estado revisado.
+- **v1.0:** dashboard inicial, filtros, detalle de diff y alta demostrativa de monitores.
